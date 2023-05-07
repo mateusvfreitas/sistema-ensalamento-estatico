@@ -63,6 +63,7 @@ export class CursoModalComponent implements OnInit {
     wrapCurso() {
         let curso = {
             nome: this.nome.value,
+            usuarios: this.usuarios.value,
         };
         return curso;
     }
