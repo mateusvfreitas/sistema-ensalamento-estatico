@@ -40,4 +40,25 @@ export class UsuarioService {
     getUsuarios(): Usuario[] {
         return this.listaUsuarios;
     }
+
+    login(username: any, password: any): Observable<any> {
+        const url = 'https://sistemas2.utfpr.edu.br/utfpr-auth/api/v1';
+        const dados = {
+            username: username,
+            password: password,
+        };
+
+        // let headers = new HttpHeaders({
+        //     Accept: 'application/json, text/plain, */*',
+        //     'Accept-Language': 'en-US,en;q=0.9',
+        //     Connection: 'keep-alive',
+        //     'Content-Type': 'application/json',
+        //     Cookie: 'style=null',
+        //     Origin: 'https://sistemas2.utfpr.edu.br',
+        //     Referer: 'https://sistemas2.utfpr.edu.br/home',
+        // });
+        // let options = { headers: headers };
+
+        return this.http.post(url, dados);
+    }
 }

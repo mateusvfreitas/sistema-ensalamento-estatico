@@ -20,9 +20,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
-                // let errorMessage = '';
                 const errorObject = {
-                    message: error.error.message,
+                    message: error.error.message || error.error[0].error,
                     code: error.status,
                 };
 

@@ -7,6 +7,7 @@ import { FILTRO_TEXTO } from '../utils/filtros';
 import { SnackbarService } from '../utils/snackbar.service';
 import { CreateUsuarioComponent } from './create/create-usuario.component';
 
+import { FormControl, Validators } from '@angular/forms';
 import { Usuario } from './model/usuario';
 import { UsuarioService } from './usuario.service';
 
@@ -18,6 +19,10 @@ import { UsuarioService } from './usuario.service';
 export class UsuarioComponent implements OnInit, AfterViewInit {
     displayedColumns: string[] = ['nome', 'email', 'isAdmin', 'moreActions'];
     dataSource = new MatTableDataSource<Usuario>();
+
+    username = new FormControl('', [Validators.required]);
+    password = new FormControl('', [Validators.required]);
+    hide = true;
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
@@ -78,5 +83,14 @@ export class UsuarioComponent implements OnInit, AfterViewInit {
             this.listarUsuarios();
             this.snackService.openSnackbar('Usuário deletado', true);
         });
+    }
+
+    teste() {
+        this.usuarioService
+            .login(this.username.value, this.password.value)
+            .subscribe((response) => {
+                // console.log(response);
+                this.snackService.openSnackbar(response, true);
+            });
     }
 }
