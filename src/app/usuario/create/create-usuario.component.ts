@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from 'src/app/utils/snackbar.service';
 import { UsuarioService } from '../usuario.service';
 
@@ -12,6 +12,7 @@ import { UsuarioService } from '../usuario.service';
 })
 export class CreateUsuarioComponent implements OnInit {
     nome = new FormControl('', [Validators.required]);
+    username = new FormControl('', [Validators.required]);
     email = new FormControl('', [Validators.required, Validators.email]);
     permissao = new FormControl('simples');
 
@@ -29,6 +30,7 @@ export class CreateUsuarioComponent implements OnInit {
     ngOnInit(): void {
         if (this.usuarioDialogContent !== null) {
             this.nome.setValue(this.usuarioDialogContent.nome);
+            this.username.setValue(this.usuarioDialogContent.username);
             this.email.setValue(this.usuarioDialogContent.email);
             this.permissao.setValue(
                 this.usuarioDialogContent.isAdmin === false
@@ -36,12 +38,6 @@ export class CreateUsuarioComponent implements OnInit {
                     : 'completo'
             );
         }
-    }
-
-    clearForm() {
-        this.nome.setValue('');
-        this.email.setValue('');
-        this.permissao.setValue('simples');
     }
 
     saveOrUpdateDecider() {
@@ -55,6 +51,7 @@ export class CreateUsuarioComponent implements OnInit {
     wrapUsuario() {
         let usuario = {
             nome: this.nome.value,
+            username: this.username.value,
             email: this.email.value,
             isAdmin: this.permissao.value == 'simples' ? false : true,
         };
@@ -64,6 +61,7 @@ export class CreateUsuarioComponent implements OnInit {
     salvarUsuario() {
         if (
             this.nome.hasError('required') ||
+            this.username.hasError('required') ||
             this.email.hasError('required') ||
             this.email.hasError('email')
         ) {

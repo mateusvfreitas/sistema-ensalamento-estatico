@@ -17,7 +17,13 @@ import { UsuarioService } from './usuario.service';
     styleUrls: ['./usuario.component.scss'],
 })
 export class UsuarioComponent implements OnInit, AfterViewInit {
-    displayedColumns: string[] = ['nome', 'email', 'isAdmin', 'moreActions'];
+    displayedColumns: string[] = [
+        'nome',
+        'username',
+        'email',
+        'isAdmin',
+        'moreActions',
+    ];
     dataSource = new MatTableDataSource<Usuario>();
 
     username = new FormControl('', [Validators.required]);

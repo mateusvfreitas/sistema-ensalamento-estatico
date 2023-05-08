@@ -34,7 +34,7 @@ export class HorarioComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.setSort({ active: 'nome', direction: 'asc' });
+        this.setSort({ active: 'horarioInicio', direction: 'asc' });
         this.dataSource.sort = this.sort;
     }
 
