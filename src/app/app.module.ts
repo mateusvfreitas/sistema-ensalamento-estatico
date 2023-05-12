@@ -41,12 +41,15 @@ import { GrupoSalaModalComponent } from './grupo-sala/grupo-sala-modal/grupo-sal
 import { GrupoSalaComponent } from './grupo-sala/grupo-sala.component';
 import { HorarioModalComponent } from './horario/horario-modal/horario-modal.component';
 import { HorarioComponent } from './horario/horario.component';
+import { LoginComponent } from './login/login.component';
 import { SalaModalComponent } from './sala/sala-modal/sala-modal.component';
 import { SalaComponent } from './sala/sala.component';
 import { CustomPaginatorConfiguration } from './shared/CustomPaginatorConfiguration';
+import { AccessGuard } from './shared/access-guard';
 import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { CreateUsuarioComponent } from './usuario/create/create-usuario.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
@@ -65,6 +68,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
         BlocoAulaComponent,
         BlocoAulaModalComponent,
         SalaModalComponent,
+        LoginComponent,
+        HomeComponent,
     ],
     imports: [
         BrowserModule,
@@ -110,6 +115,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
             useClass: HttpErrorInterceptor,
             multi: true,
         },
+        AccessGuard,
     ],
     bootstrap: [AppComponent],
 })

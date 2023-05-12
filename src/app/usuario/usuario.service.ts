@@ -1,17 +1,28 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, concatMap, map } from 'rxjs';
 import { AppApi } from 'src/app/appApi';
-import { Usuario } from './model/usuario';
+import { Usuario, UsuarioSimplificado } from './model/usuario';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UsuarioService {
+    private usuarioSubject: BehaviorSubject<UsuarioSimplificado | null>;
+    public usuarioSimplificado: Observable<UsuarioSimplificado | null>;
     private listaUsuarios!: Usuario[];
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+        this.usuarioSubject = new BehaviorSubject(
+            JSON.parse(localStorage.getItem('user')!)
+        );
+        this.usuarioSimplificado = this.usuarioSubject.asObservable();
+    }
+
+    public get usuarioValue() {
+        return this.usuarioSubject.value;
+    }
 
     listarUsuarios(): Observable<any> {
         return this.http.get(`${AppApi.BASE_URL}/usuarios`);
@@ -41,24 +52,41 @@ export class UsuarioService {
         return this.listaUsuarios;
     }
 
-    login(username: any, password: any): Observable<any> {
+    validaUsuario(username: any, password: any): Observable<any> {
         const url = 'https://sistemas2.utfpr.edu.br/utfpr-auth/api/v1';
         const dados = {
             username: username,
             password: password,
         };
 
-        // let headers = new HttpHeaders({
-        //     Accept: 'application/json, text/plain, */*',
-        //     'Accept-Language': 'en-US,en;q=0.9',
-        //     Connection: 'keep-alive',
-        //     'Content-Type': 'application/json',
-        //     Cookie: 'style=null',
-        //     Origin: 'https://sistemas2.utfpr.edu.br',
-        //     Referer: 'https://sistemas2.utfpr.edu.br/home',
-        // });
-        // let options = { headers: headers };
-
         return this.http.post(url, dados);
+    }
+    // var retrievedObject = localStorage.getItem('testObject');
+    // console.log('retrievedObject: ', JSON.parse(retrievedObject));
+
+    login(username: any) {
+        let params = new HttpParams();
+        params = params.append('filtro', username);
+        return this.http
+            .get(`${AppApi.BASE_URL}/usuarios/username`, {
+                params: params,
+            })
+            .pipe(
+                concatMap((user) =>
+                    this.consultarUsuarioPorId(user['id']).pipe(
+                        map(() => {
+                            let u: UsuarioSimplificado = {
+                                username: user['username'],
+                                isAdmin: user['isAdmin'],
+                            };
+                            localStorage.setItem(
+                                'usuario',
+                                JSON.stringify(user)
+                            );
+                            this.usuarioSubject.next(u);
+                        })
+                    )
+                )
+            );
     }
 }

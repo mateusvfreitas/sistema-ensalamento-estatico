@@ -93,10 +93,16 @@ export class UsuarioComponent implements OnInit, AfterViewInit {
 
     teste() {
         this.usuarioService
-            .login(this.username.value, this.password.value)
+            .validaUsuario(this.username.value, this.password.value)
             .subscribe((response) => {
                 // console.log(response);
                 this.snackService.openSnackbar(response, true);
             });
+    }
+
+    seila() {
+        this.usuarioService.login(this.username.value).subscribe((response) => {
+            console.log(response);
+        });
     }
 }

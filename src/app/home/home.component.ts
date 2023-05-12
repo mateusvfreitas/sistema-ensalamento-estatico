@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { UsuarioSimplificado } from './usuario/model/usuario';
-import { UsuarioService } from './usuario/usuario.service';
+import { UsuarioSimplificado } from '../usuario/model/usuario';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
 })
-export class AppComponent {
-    title = 'TCC Pipa';
+export class HomeComponent {
     usuarioSimplificado?: UsuarioSimplificado | null;
 
     constructor(private usuarioService: UsuarioService) {

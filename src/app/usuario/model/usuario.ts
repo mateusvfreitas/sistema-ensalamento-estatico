@@ -5,3 +5,8 @@ export interface Usuario {
     email: string;
     isAdmin: boolean;
 }
+
+export interface UsuarioSimplificado {
+    username: string;
+    isAdmin: boolean;
+}
