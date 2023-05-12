@@ -1,16 +1,27 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppApi } from '../appApi';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class BlocoAulaService {
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private usuarioService: UsuarioService
+    ) {}
 
     listarBlocosAula(): Observable<any> {
-        return this.http.get(`${AppApi.BASE_URL}/blocos-aula`);
+        let params = new HttpParams();
+        const usuario = this.usuarioService.usuarioValue;
+        if (usuario && !usuario.isAdmin) {
+            params = params.append('responsavel', usuario.username);
+        }
+        return this.http.get(`${AppApi.BASE_URL}/blocos-aula`, {
+            params: params,
+        });
     }
 
     consultarBlocoAulaPorId(id: any): Observable<any> {
