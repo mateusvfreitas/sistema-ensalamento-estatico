@@ -91,8 +91,6 @@ export class BlocoAulaComponent implements OnInit {
     }
 
     openDialog(blocoToUpdate: any) {
-        // console.log('BOTAO CLICADO');
-        // console.log(this.dataSource.data);
         this.atributoService.setAtributos(this.listaAtributos);
         this.cursoService.setCursos(this.listaCursos);
         this.horarioService.setHorarios(this.listaHorarios);

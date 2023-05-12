@@ -29,7 +29,6 @@ export class SalaModalComponent implements OnInit {
 
     listaAtributos!: Atributo[];
     listaAgrupamentos!: GrupoSala[];
-    seila: string[] = [];
 
     salaDialogContent!: Sala;
 
@@ -67,10 +66,6 @@ export class SalaModalComponent implements OnInit {
             this.isExclusiva = this.salaDialogContent.isExclusiva;
             this.isLiberar = this.salaDialogContent.isLiberar;
         }
-    }
-
-    teste() {
-        console.log(this.salaDialogContent);
     }
 
     saveOrUpdateDecider() {

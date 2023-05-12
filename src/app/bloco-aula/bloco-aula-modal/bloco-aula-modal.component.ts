@@ -169,11 +169,6 @@ export class BlocoAulaModalComponent implements OnInit {
             });
     }
 
-    teste() {
-        const eu = this.getDiaSemana(this.diaSemana.value!);
-        console.log(eu);
-    }
-
     getDiaSemana(diaSemana: DiaSemana): string {
         const indexOfS = Object.values(DiaSemana).indexOf(
             diaSemana as unknown as DiaSemana

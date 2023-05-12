@@ -21,8 +21,10 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {}
 
     login() {
-        this.usuarioService.login(this.username.value).subscribe(() => {
-            this.router.navigate(['/home']);
-        });
+        this.usuarioService
+            .login(this.username.value, this.password.value)
+            .subscribe(() => {
+                this.router.navigate(['/home']);
+            });
     }
 }

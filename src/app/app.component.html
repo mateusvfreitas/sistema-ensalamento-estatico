@@ -1,56 +1,60 @@
 <!-- <span style="margin-left: 50px">TCC Pipa</span> -->
 <mat-toolbar color="primary">
     <div class="container-header container-conteudo" style="display: flex">
-        <img src="../assets/images/utf.png" alt="Logo Universidade" />
-        <a
-            *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-            mat-button
-            routerLink="/usuarios"
-            routerLinkActive="active"
-            >Usuários</a
-        >
-        <a
-            *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-            mat-button
-            routerLink="/horarios"
-            routerLinkActive="active"
-            >Horários</a
-        >
-        <a
-            *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-            mat-button
-            routerLink="/cursos"
-            routerLinkActive="active"
-            >Cursos</a
-        >
-        <a
-            *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-            mat-button
-            routerLink="/atributos"
-            routerLinkActive="active"
-            >Atributos</a
-        >
-        <a
-            *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-            mat-button
-            routerLink="/grupo-salas"
-            routerLinkActive="active"
-            >Agrupamento</a
-        >
-        <a
-            *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-            mat-button
-            routerLink="/salas"
-            routerLinkActive="active"
-            >Salas</a
-        >
-        <a
-            *ngIf="usuarioSimplificado"
-            mat-button
-            routerLink="/blocos-aula"
-            routerLinkActive="active"
-            >Aulas</a
-        >
+        <a routerLink="/home" routerLinkActive="active">
+            <img src="../assets/images/utf.png" alt="Logo Universidade" />
+        </a>
+        <div class="rotas">
+            <a
+                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                mat-button
+                routerLink="/usuarios"
+                routerLinkActive="active"
+                >Usuários</a
+            >
+            <a
+                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                mat-button
+                routerLink="/horarios"
+                routerLinkActive="active"
+                >Horários</a
+            >
+            <a
+                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                mat-button
+                routerLink="/cursos"
+                routerLinkActive="active"
+                >Cursos</a
+            >
+            <a
+                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                mat-button
+                routerLink="/atributos"
+                routerLinkActive="active"
+                >Atributos</a
+            >
+            <a
+                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                mat-button
+                routerLink="/grupo-salas"
+                routerLinkActive="active"
+                >Agrupamento</a
+            >
+            <a
+                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                mat-button
+                routerLink="/salas"
+                routerLinkActive="active"
+                >Salas</a
+            >
+            <a
+                *ngIf="usuarioSimplificado"
+                mat-button
+                routerLink="/blocos-aula"
+                routerLinkActive="active"
+                >Aulas</a
+            >
+        </div>
         <div
             *ngIf="usuarioSimplificado"
             style="margin: auto 0 auto auto; text-align: right"

@@ -96,8 +96,6 @@ export class SalaComponent implements OnInit {
     }
 
     openDialog(salaToUpdate: any) {
-        // console.log('BOTAO CLICADO');
-        // console.log(this.dataSource.data);
         this.atributoService.setAtributos(this.listaAtributos);
         this.grupoSalaService.setAgrupamentos(this.listaAgrupamentos);
         const dialogRef = this.dialog.open(SalaModalComponent, {

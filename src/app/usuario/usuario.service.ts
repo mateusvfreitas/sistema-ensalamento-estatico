@@ -61,10 +61,35 @@ export class UsuarioService {
 
         return this.http.post(url, dados);
     }
-    // var retrievedObject = localStorage.getItem('testObject');
-    // console.log('retrievedObject: ', JSON.parse(retrievedObject));
 
-    login(username: any) {
+    /* USAR LOCAL CASO NAO TENHA USUARIO VÁLIDO PARA TESTE */
+    // login(username: any, password: any) {
+    //     let params = new HttpParams();
+    //     params = params.append('filtro', username);
+    //     return this.http
+    //         .get(`${AppApi.BASE_URL}/usuarios/username`, {
+    //             params: params,
+    //         })
+    //         .pipe(
+    //             concatMap((user) =>
+    //                 this.consultarUsuarioPorId(user['id']).pipe(
+    //                     map(() => {
+    //                         let u: UsuarioSimplificado = {
+    //                             username: user['username'],
+    //                             isAdmin: user['isAdmin'],
+    //                         };
+    //                         localStorage.setItem(
+    //                             'usuario',
+    //                             JSON.stringify(user)
+    //                         );
+    //                         this.usuarioSubject.next(u);
+    //                     })
+    //                 )
+    //             )
+    //         );
+    // }
+
+    login(username: any, password: any) {
         let params = new HttpParams();
         params = params.append('filtro', username);
         return this.http
@@ -73,7 +98,7 @@ export class UsuarioService {
             })
             .pipe(
                 concatMap((user) =>
-                    this.consultarUsuarioPorId(user['id']).pipe(
+                    this.validaUsuario(username, password).pipe(
                         map(() => {
                             let u: UsuarioSimplificado = {
                                 username: user['username'],
