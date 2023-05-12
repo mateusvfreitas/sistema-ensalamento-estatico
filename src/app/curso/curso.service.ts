@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppApi } from '../appApi';
+import { UsuarioService } from '../usuario/usuario.service';
 import { Curso } from './model/curso';
 
 @Injectable({
@@ -10,10 +11,18 @@ import { Curso } from './model/curso';
 export class CursoService {
     private listaCursos!: Curso[];
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private usuarioService: UsuarioService
+    ) {}
 
     listarCursos(): Observable<any> {
-        return this.http.get(`${AppApi.BASE_URL}/cursos`);
+        let params = new HttpParams();
+        const usuario = this.usuarioService.usuarioValue;
+        if (usuario && !usuario.isAdmin) {
+            params = params.append('responsavel', usuario.username);
+        }
+        return this.http.get(`${AppApi.BASE_URL}/cursos`, { params: params });
     }
 
     consultarCursoPorId(id: any): Observable<any> {

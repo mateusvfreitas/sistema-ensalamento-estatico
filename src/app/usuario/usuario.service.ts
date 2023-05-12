@@ -16,9 +16,8 @@ export class UsuarioService {
 
     constructor(private http: HttpClient, private router: Router) {
         this.usuarioSubject = new BehaviorSubject(
-            JSON.parse(localStorage.getItem('usuario')!)
+            JSON.parse(sessionStorage.getItem('usuario')!)
         );
-        console.log(localStorage.getItem('user')!);
         this.usuarioSimplificado = this.usuarioSubject.asObservable();
     }
 
@@ -80,7 +79,7 @@ export class UsuarioService {
     //                             username: user['username'],
     //                             isAdmin: user['isAdmin'],
     //                         };
-    //                         localStorage.setItem(
+    //                         sessionStorage.setItem(
     //                             'usuario',
     //                             JSON.stringify(user)
     //                         );
@@ -106,7 +105,7 @@ export class UsuarioService {
                                 username: user['username'],
                                 isAdmin: user['isAdmin'],
                             };
-                            localStorage.setItem(
+                            sessionStorage.setItem(
                                 'usuario',
                                 JSON.stringify(user)
                             );
@@ -118,7 +117,7 @@ export class UsuarioService {
     }
 
     logout() {
-        localStorage.removeItem('usuario');
+        sessionStorage.removeItem('usuario');
         this.usuarioSubject.next(null);
         this.router.navigate(['/signin']);
     }
