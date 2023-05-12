@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, concatMap, map } from 'rxjs';
 import { AppApi } from 'src/app/appApi';
 import { Usuario, UsuarioSimplificado } from './model/usuario';
@@ -13,10 +14,11 @@ export class UsuarioService {
     public usuarioSimplificado: Observable<UsuarioSimplificado | null>;
     private listaUsuarios!: Usuario[];
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
         this.usuarioSubject = new BehaviorSubject(
-            JSON.parse(localStorage.getItem('user')!)
+            JSON.parse(localStorage.getItem('usuario')!)
         );
+        console.log(localStorage.getItem('user')!);
         this.usuarioSimplificado = this.usuarioSubject.asObservable();
     }
 
@@ -113,5 +115,11 @@ export class UsuarioService {
                     )
                 )
             );
+    }
+
+    logout() {
+        localStorage.removeItem('usuario');
+        this.usuarioSubject.next(null);
+        this.router.navigate(['/signin']);
     }
 }

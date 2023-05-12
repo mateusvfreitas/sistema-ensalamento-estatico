@@ -26,13 +26,14 @@ export class AccessGuard implements CanActivate {
         const user = this.usuarioService.usuarioValue;
         const adminOnlyRoute = route.data['adminOnlyRoute'] || false;
         if (user) {
-            if (user.isAdmin && adminOnlyRoute) {
-                return true;
+            if (!user.isAdmin && adminOnlyRoute) {
+                this.router.navigate(['/signin']);
+                return false;
             }
             return true;
         }
 
-        this.router.navigate(['/usuarios/signin']);
+        this.router.navigate(['/signin']);
         return false;
     }
 }

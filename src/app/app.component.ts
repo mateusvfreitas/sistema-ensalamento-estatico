@@ -16,4 +16,8 @@ export class AppComponent {
             (u) => (this.usuarioSimplificado = u)
         );
     }
+
+    logout() {
+        this.usuarioService.logout();
+    }
 }

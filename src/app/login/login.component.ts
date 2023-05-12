@@ -18,7 +18,11 @@ export class LoginComponent implements OnInit {
         private router: Router
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.usuarioService.usuarioValue) {
+            this.router.navigate(['/home']);
+        }
+    }
 
     login() {
         this.usuarioService

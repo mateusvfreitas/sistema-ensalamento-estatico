@@ -57,9 +57,25 @@
         </div>
         <div
             *ngIf="usuarioSimplificado"
-            style="margin: auto 0 auto auto; text-align: right"
+            style="margin: auto 0 auto auto; text-align: right; width: 20%"
         >
-            <p style="margin: auto">Olá, {{ usuarioSimplificado.username }}</p>
+            <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                style="width: fit-content"
+            >
+                <span class="usuario-loggado" style="font-size: 16px">
+                    {{ usuarioSimplificado.username }}
+                </span>
+
+                <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button (click)="logout()" mat-menu-item>
+                    <mat-icon>logout</mat-icon>
+                    <span>Sair</span>
+                </button>
+            </mat-menu>
         </div>
     </div>
 </mat-toolbar>
