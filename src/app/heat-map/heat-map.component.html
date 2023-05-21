@@ -2,9 +2,7 @@
     <table
         mat-table
         matSort
-        matSortActive="horarioInicio"
         [dataSource]="dataSource"
-        matSortDirection="asc"
         matSortDisableClear="true"
         class="mat-elevation-z8"
     >
@@ -13,23 +11,21 @@
                 style="width: 10%; padding-right: 50px"
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header
             ></th>
-            <td mat-cell *matCellDef="let element">
+            <td style="text-align: left" mat-cell *matCellDef="let element">
                 {{ element.nomeHorario }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="segunda">
             <th
-                style="width: 15%"
+                style="width: 15%; text-align: center"
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header
             >
                 Segunda
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td style="text-align: center" mat-cell *matCellDef="let element">
                 {{ element.listaDetalhes[1].contagem }}
             </td>
         </ng-container>
@@ -39,53 +35,53 @@
                 style="width: 15%; text-align: center"
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header
             >
                 Terça
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td style="text-align: center" mat-cell *matCellDef="let element">
                 {{ element.listaDetalhes[2].contagem }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="quarta">
             <th
-                style="width: 15%"
+                style="width: 15%; text-align: center"
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header
             >
                 Quarta
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td style="text-align: center" mat-cell *matCellDef="let element">
                 {{ element.listaDetalhes[3].contagem }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="quinta">
             <th
-                style="width: 15%"
+                style="width: 15%; text-align: center"
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header
             >
                 Quinta
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td style="text-align: center" mat-cell *matCellDef="let element">
                 {{ element.listaDetalhes[4].contagem }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="sexta">
             <th
-                style="width: 15%"
+                style="width: 15%; text-align: center; padding-right: 0"
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header
             >
                 Sexta
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                style="text-align: center; padding-right: 0"
+                mat-cell
+                *matCellDef="let element"
+            >
                 {{ element.listaDetalhes[5].contagem }}
             </td>
         </ng-container>

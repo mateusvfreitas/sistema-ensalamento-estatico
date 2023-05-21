@@ -2,3 +2,8 @@ table {
     margin: 71px auto;
     width: 50%;
 }
+
+.mat-cell,
+.mat-header-cell {
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
