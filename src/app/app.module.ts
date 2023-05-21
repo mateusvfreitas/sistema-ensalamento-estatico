@@ -39,6 +39,8 @@ import { CursoModalComponent } from './curso/curso-modal/curso-modal.component';
 import { CursoComponent } from './curso/curso.component';
 import { GrupoSalaModalComponent } from './grupo-sala/grupo-sala-modal/grupo-sala-modal.component';
 import { GrupoSalaComponent } from './grupo-sala/grupo-sala.component';
+import { HeatMapComponent } from './heat-map/heat-map.component';
+import { HomeComponent } from './home/home.component';
 import { HorarioModalComponent } from './horario/horario-modal/horario-modal.component';
 import { HorarioComponent } from './horario/horario.component';
 import { LoginComponent } from './login/login.component';
@@ -49,7 +51,6 @@ import { AccessGuard } from './shared/access-guard';
 import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { CreateUsuarioComponent } from './usuario/create/create-usuario.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { HomeComponent } from './home/home.component';
         SalaModalComponent,
         LoginComponent,
         HomeComponent,
+        HeatMapComponent,
     ],
     imports: [
         BrowserModule,

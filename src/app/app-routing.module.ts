@@ -4,6 +4,7 @@ import { AtributoComponent } from './atributo/atributo.component';
 import { BlocoAulaComponent } from './bloco-aula/bloco-aula.component';
 import { CursoComponent } from './curso/curso.component';
 import { GrupoSalaComponent } from './grupo-sala/grupo-sala.component';
+import { HeatMapComponent } from './heat-map/heat-map.component';
 import { HomeComponent } from './home/home.component';
 import { HorarioComponent } from './horario/horario.component';
 import { LoginComponent } from './login/login.component';
@@ -51,6 +52,11 @@ const routes: Routes = [
     {
         path: 'blocos-aula',
         component: BlocoAulaComponent,
+        canActivate: [AccessGuard],
+    },
+    {
+        path: 'heat-map',
+        component: HeatMapComponent,
         canActivate: [AccessGuard],
     },
     {

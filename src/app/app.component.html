@@ -54,6 +54,13 @@
                 routerLinkActive="active"
                 >Aulas</a
             >
+            <a
+                *ngIf="usuarioSimplificado"
+                mat-button
+                routerLink="/heat-map"
+                routerLinkActive="active"
+                >Heat Map</a
+            >
         </div>
         <div
             *ngIf="usuarioSimplificado"
