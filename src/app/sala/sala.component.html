@@ -71,22 +71,35 @@
             class="toggle"
             style="display: flex; width: 30%"
         >
-            <span style="margin-right: 8px">Qualquer</span>
-            <mat-slide-toggle [(ngModel)]="matchAll"></mat-slide-toggle>
-            <span style="margin-left: 8px">Todos</span>
+            <span
+                [ngClass]="
+                    matchAll === false ? 'toggle-ativo' : 'toggle-inativo'
+                "
+                style="margin-right: 8px"
+                >Qualquer</span
+            >
+            <mat-slide-toggle
+                color="primary"
+                [(ngModel)]="matchAll"
+            ></mat-slide-toggle>
+            <span
+                [ngClass]="matchAll ? 'toggle-ativo' : 'toggle-inativo'"
+                style="margin-left: 8px"
+                >Todos</span
+            >
             <mat-icon
+                class="icone-info"
                 matTooltip="QUALQUER: deve conter algum dos atributos do filtro.
             TODOS: deve conter todos os atributos do filtro."
-                style="margin-left: 10px; cursor: pointer"
+                style="margin-left: 10px"
                 matTooltipPosition="above"
-                color="primary"
                 >info</mat-icon
             >
         </div>
         <button
             style="width: 7%"
             mat-raised-button
-            color="accent"
+            color="primary"
             (click)="filtrar()"
         >
             Filtrar

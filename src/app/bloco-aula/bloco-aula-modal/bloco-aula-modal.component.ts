@@ -23,14 +23,8 @@ export class BlocoAulaModalComponent implements OnInit {
     disciplina = new FormControl('', [Validators.required]);
     turma = new FormControl('', [Validators.required]);
     curso = new FormControl<Curso | undefined>(undefined, Validators.required);
-    salaEspecifica = new FormControl<Sala | undefined>(
-        undefined,
-        Validators.required
-    );
-    salaAtual = new FormControl<Sala | undefined>(
-        undefined,
-        Validators.required
-    );
+    salaEspecifica = new FormControl<Sala | undefined>(undefined);
+    salaAtual = new FormControl<Sala | undefined>(undefined);
     diaSemana = new FormControl<DiaSemana | undefined>(
         undefined,
         Validators.required

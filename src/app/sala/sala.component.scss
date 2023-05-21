@@ -77,6 +77,10 @@ h4 {
     margin-top: 20px;
 }
 
+.icone-info {
+    color: $primary;
+}
+
 .filtros button {
     height: 50px;
     margin: 5px 0;
@@ -101,9 +105,9 @@ input[type="number"] {
     appearance: textfield;
 }
 
-.toggle span {
-    color: $cinza-secondary;
-}
+// .toggle span {
+//     color: $cinza-secondary;
+// }
 
 .atributos-compactados {
     max-width: 450px;
@@ -124,6 +128,13 @@ input[type="number"] {
     min-width: max-content;
 }
 
+.toggle-ativo {
+    color: $primary;
+}
+
+.toggle-inativo {
+    color: $cinza-secondary;
+}
 // .atributos-compactados::-webkit-scrollbar-track {
 //     background-color: $cinza-secondary;
 // }

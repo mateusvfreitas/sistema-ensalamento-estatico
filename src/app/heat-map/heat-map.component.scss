@@ -1,9 +1,60 @@
 table {
-    margin: 71px auto;
+    margin: auto;
     width: 50%;
+}
+
+.filtro-atributo {
+    margin-top: 10px;
 }
 
 .mat-cell,
 .mat-header-cell {
     border-right: 1px solid rgba(255, 255, 255, 0.12);
 }
+
+.mat-row {
+    height: 30px;
+}
+
+.container-filtro {
+    width: 50%;
+    margin: auto;
+}
+
+.filtro-button {
+    margin: auto 0;
+}
+
+.filtro-button button {
+    height: 50px;
+    // width: 10%;
+}
+
+:host ::ng-deep .mat-chip-list-wrapper {
+    flex-wrap: nowrap;
+    margin: -4px auto;
+}
+
+// color palettes for heat map
+// p {
+//     color: #68bf7b;
+//     color: #7dc57c;
+//     color: #9fcf7e;
+//     color: #c3d980;
+//     color: #dbe081;
+//     color: #f7e683;
+//     color: #fdd17f;
+//     color: #fbae78;
+//     color: #fa9172;
+//     color: #f8746d;
+// }
+
+// h6 {
+//     color: #00a45a;
+//     color: #6cbd05;
+//     color: #a5ce31;
+//     color: #ffb600;
+//     color: #ff9900;
+//     color: #ff6d1e;
+//     color: #df3800;
+// }
