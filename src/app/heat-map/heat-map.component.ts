@@ -31,6 +31,7 @@ export class HeatMapComponent implements OnInit {
     listaAtributos: Atributo[] = [];
     paramAtributos: Atributo[] = [];
     maxValue!: number;
+    qtdeSalas!: number;
 
     displayedColumns: string[] = [
         'horarioDiaSemana',
@@ -86,6 +87,7 @@ export class HeatMapComponent implements OnInit {
             .listarSalasFiltros(this.paramAtributos, null, null, true)
             .subscribe((response) => {
                 this.maxValue = response.length > 0 ? response.length : 1;
+                this.qtdeSalas = response.length;
             });
     }
 

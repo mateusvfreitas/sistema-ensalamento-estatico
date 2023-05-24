@@ -3,7 +3,7 @@
         class="container-filtro"
         style="display: flex; justify-content: space-between"
     >
-        <div class="filtro-atributo" style="width: 70%">
+        <div class="filtro-atributo" style="width: 50%">
             <mat-form-field style="width: 90%" appearance="outline">
                 <mat-label>Atributos</mat-label>
                 <mat-select [formControl]="filtroAtributos" multiple>
@@ -23,6 +23,9 @@
                     >
                 </mat-select>
             </mat-form-field>
+        </div>
+        <div class="qtde-salas">
+            <p>Número de salas: {{ qtdeSalas }}</p>
         </div>
         <div class="filtro-button">
             <button (click)="filtrar()" mat-raised-button color="primary">

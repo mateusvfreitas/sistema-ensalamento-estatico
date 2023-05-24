@@ -2,7 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppApi } from '../appApi';
+import { Atributo } from '../atributo/model/atributo';
 import { UsuarioService } from '../usuario/usuario.service';
+import { DiaSemana } from '../utils/dia-semana';
 
 @Injectable({
     providedIn: 'root',
@@ -13,11 +15,26 @@ export class BlocoAulaService {
         private usuarioService: UsuarioService
     ) {}
 
-    listarBlocosAula(): Observable<any> {
+    listarBlocosAula(
+        filtroAtributos: Atributo[] | null,
+        filtroDiaSemana: DiaSemana | null,
+        filtroIsMatchAll: boolean | null
+    ): Observable<any> {
         let params = new HttpParams();
         const usuario = this.usuarioService.usuarioValue;
         if (usuario && !usuario.isAdmin) {
             params = params.append('responsavel', usuario.username);
+        }
+
+        filtroAtributos?.forEach(
+            (atributo) =>
+                (params = params.append('atributo', atributo.id.toString()))
+        );
+        if (filtroDiaSemana != null) {
+            params = params.append('diaSemana', filtroDiaSemana);
+        }
+        if (filtroIsMatchAll != null) {
+            params = params.append('isMatchAll', filtroIsMatchAll.toString());
         }
         return this.http.get(`${AppApi.BASE_URL}/blocos-aula`, {
             params: params,

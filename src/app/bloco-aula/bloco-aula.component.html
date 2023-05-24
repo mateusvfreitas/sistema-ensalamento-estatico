@@ -9,35 +9,22 @@
             #input
         />
     </mat-form-field>
-    <!-- <div class="filtros" style="display: flex">
-        <div class="filtro-capacidade" style="width: 13%">
+    <div class="filtros" style="display: flex">
+        <div class="filtro-dia-semana" style="width: 20%">
             <mat-form-field appearance="outline">
-                <mat-label>Capacidade Mínima</mat-label>
-                <input
-                    [formControl]="filtroCapacidade"
-                    type="number"
-                    matInput
-                    style="color: white"
-                />
-            </mat-form-field>
-        </div>
-        <div class="filtro-agrupamento" style="width: 20%">
-            <mat-form-field appearance="outline">
-                <mat-label>Agrupamento</mat-label>
-                <mat-select [formControl]="filtroAgrupamento" multiple>
-                    <mat-select-trigger>
+                <mat-label>Dia da semana</mat-label>
+                <mat-select [formControl]="filtroDiaSemana">
+                    <!-- <mat-select-trigger>
                         <mat-chip-list>
-                            <mat-chip
-                                *ngFor="let grupo of filtroAgrupamento.value"
-                            >
-                                {{ grupo["nome"] }}
+                            <mat-chip *ngFor="let dia of filtroDiaSemana.value">
+                                {{ dia }}
                             </mat-chip>
                         </mat-chip-list>
-                    </mat-select-trigger>
+                    </mat-select-trigger> -->
                     <mat-option
-                        *ngFor="let grupo of listaAgrupamentos"
-                        [value]="grupo"
-                        >{{ grupo.nome }}</mat-option
+                        *ngFor="let dia of listaDiasSemana"
+                        [value]="getDiaSemanaKey(dia)"
+                        >{{ dia }}</mat-option
                     >
                 </mat-select>
             </mat-form-field>
@@ -69,11 +56,24 @@
             matBadge="4"
             matBadgeOverlap="false"
             class="toggle"
-            style="display: flex; width: 30%"
+            style="display: flex; width: 43%"
         >
-            <span style="margin-right: 8px">Qualquer</span>
-            <mat-slide-toggle [(ngModel)]="matchAll"></mat-slide-toggle>
-            <span style="margin-left: 8px">Todos</span>
+            <span
+                [ngClass]="
+                    matchAll === false ? 'toggle-ativo' : 'toggle-inativo'
+                "
+                style="margin-right: 8px"
+                >Qualquer</span
+            >
+            <mat-slide-toggle
+                color="primary"
+                [(ngModel)]="matchAll"
+            ></mat-slide-toggle>
+            <span
+                [ngClass]="matchAll ? 'toggle-ativo' : 'toggle-inativo'"
+                style="margin-left: 8px"
+                >Todos</span
+            >
             <mat-icon
                 matTooltip="QUALQUER: deve conter algum dos atributos do filtro.
             TODOS: deve conter todos os atributos do filtro."
@@ -86,12 +86,12 @@
         <button
             style="width: 7%"
             mat-raised-button
-            color="accent"
+            color="primary"
             (click)="filtrar()"
         >
             Filtrar
         </button>
-    </div> -->
+    </div>
 
     <table
         mat-table

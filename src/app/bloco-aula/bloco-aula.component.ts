@@ -6,6 +6,7 @@ import {
     trigger,
 } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -65,6 +66,15 @@ export class BlocoAulaComponent implements OnInit {
     listaCursos: Curso[] = [];
     listaHorarios: HorarioAula[] = [];
     listaSalas: Sala[] = [];
+    listaDiasSemana = Object.values(DiaSemana);
+
+    matchAll = false;
+    filtroDiaSemana = new FormControl();
+    filtroAtributos = new FormControl([]);
+
+    paramAtributos: Atributo[] = [];
+    paramDiaSemana!: DiaSemana;
+    paramMatchAll!: boolean;
 
     constructor(
         public dialog: MatDialog,
@@ -105,10 +115,16 @@ export class BlocoAulaComponent implements OnInit {
     }
 
     listarBlocosAula(): void {
-        this.blocoAulaService.listarBlocosAula().subscribe((response) => {
-            this.dataSource.data = response as BlocoAula[];
-            FILTRO_TEXTO.filtrarPorDisciplina(this.dataSource);
-        });
+        this.blocoAulaService
+            .listarBlocosAula(
+                this.paramAtributos,
+                this.paramDiaSemana,
+                this.paramMatchAll
+            )
+            .subscribe((response) => {
+                this.dataSource.data = response as BlocoAula[];
+                FILTRO_TEXTO.filtrarPorDisciplina(this.dataSource);
+            });
     }
 
     listarAtributos(): void {
@@ -167,5 +183,23 @@ export class BlocoAulaComponent implements OnInit {
 
     getDiaSemana(diaSemana: DiaSemana): string {
         return DiaSemana[diaSemana];
+    }
+
+    getDiaSemanaKey(diaSemana: DiaSemana): string {
+        const indexOfS = Object.values(DiaSemana).indexOf(
+            diaSemana as unknown as DiaSemana
+        );
+
+        const key = Object.keys(DiaSemana)[indexOfS];
+
+        return key;
+    }
+
+    filtrar(): void {
+        this.paramAtributos = this.filtroAtributos.value as Atributo[];
+        this.paramDiaSemana = this.filtroDiaSemana.value as DiaSemana;
+        this.paramMatchAll = this.matchAll;
+
+        this.listarBlocosAula();
     }
 }

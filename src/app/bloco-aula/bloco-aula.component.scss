@@ -70,3 +70,25 @@ tr.example-detail-row {
     overflow: hidden;
     display: flex;
 }
+
+.filtro-dia-semana,
+.filtro-atributos {
+    margin: auto 20px auto 0;
+}
+
+.filtros button {
+    height: 50px;
+    margin: 5px 0;
+}
+
+.toggle {
+    margin-top: 20px;
+}
+
+.toggle-ativo {
+    color: $primary;
+}
+
+.toggle-inativo {
+    color: $cinza-secondary;
+}

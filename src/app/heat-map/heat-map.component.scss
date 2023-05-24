@@ -21,13 +21,23 @@ table {
     margin: auto;
 }
 
-.filtro-button {
+.filtro-button,
+.qtde-salas {
     margin: auto 0;
 }
 
 .filtro-button button {
     height: 50px;
     // width: 10%;
+}
+
+.qtde-salas {
+    color: white;
+}
+
+.qtde-salas p {
+    margin-bottom: 0;
+    font-size: medium;
 }
 
 :host ::ng-deep .mat-chip-list-wrapper {
