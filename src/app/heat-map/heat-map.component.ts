@@ -27,7 +27,7 @@ const minValue = 0;
     styleUrls: ['./heat-map.component.scss'],
 })
 export class HeatMapComponent implements OnInit {
-    filtroAtributos = new FormControl([]);
+    filtroAtributos = new FormControl();
     listaAtributos: Atributo[] = [];
     paramAtributos: Atributo[] = [];
     maxValue!: number;
@@ -92,7 +92,7 @@ export class HeatMapComponent implements OnInit {
     }
 
     filtrar(): void {
-        this.paramAtributos = this.filtroAtributos.value as Atributo[];
+        this.paramAtributos.push(this.filtroAtributos.value as Atributo);
         this.listarSalas();
         this.gerarHeatMap();
     }
