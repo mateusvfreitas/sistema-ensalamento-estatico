@@ -92,6 +92,7 @@ export class HeatMapComponent implements OnInit {
     }
 
     filtrar(): void {
+        this.paramAtributos = [];
         this.paramAtributos.push(this.filtroAtributos.value as Atributo);
         this.listarSalas();
         this.gerarHeatMap();
