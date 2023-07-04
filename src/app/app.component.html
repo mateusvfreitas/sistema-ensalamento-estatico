@@ -5,48 +5,64 @@
             <img src="../assets/images/utf.png" alt="Logo Universidade" />
         </a>
         <div class="rotas">
-            <a
+            <button
                 *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                #menuTrigger="matMenuTrigger"
                 mat-button
-                routerLink="/usuarios"
-                routerLinkActive="active"
-                >Usuários</a
+                [matMenuTriggerFor]="belowMenu"
             >
-            <a
-                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-                mat-button
-                routerLink="/horarios"
-                routerLinkActive="active"
-                >Horários</a
+                <span class="adm"> Administração </span>
+            </button>
+            <mat-menu
+                #belowMenu="matMenu"
+                yPosition="below"
+                [overlapTrigger]="false"
             >
-            <a
-                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-                mat-button
-                routerLink="/cursos"
-                routerLinkActive="active"
-                >Cursos</a
-            >
-            <a
-                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-                mat-button
-                routerLink="/atributos"
-                routerLinkActive="active"
-                >Atributos</a
-            >
-            <a
-                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-                mat-button
-                routerLink="/grupo-salas"
-                routerLinkActive="active"
-                >Agrupamento</a
-            >
-            <a
-                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
-                mat-button
-                routerLink="/salas"
-                routerLinkActive="active"
-                >Salas</a
-            >
+                <div class="menu-adm">
+                    <button
+                        mat-menu-item
+                        routerLink="/usuarios"
+                        routerLinkActive="active"
+                    >
+                        <span>Usuários</span>
+                    </button>
+                    <button
+                        mat-menu-item
+                        routerLink="/horarios"
+                        routerLinkActive="active"
+                    >
+                        <span>Horários</span>
+                    </button>
+                    <button
+                        mat-menu-item
+                        routerLink="/cursos"
+                        routerLinkActive="active"
+                    >
+                        <span>Cursos</span>
+                    </button>
+                    <button
+                        mat-menu-item
+                        routerLink="/atributos"
+                        routerLinkActive="active"
+                    >
+                        <span>Atributos</span>
+                    </button>
+                    <button
+                        mat-menu-item
+                        routerLink="/grupo-salas"
+                        routerLinkActive="active"
+                    >
+                        <span>Agrupamentos</span>
+                    </button>
+                    <button
+                        mat-menu-item
+                        routerLink="/salas"
+                        routerLinkActive="active"
+                    >
+                        <span>Salas</span>
+                    </button>
+                </div>
+            </mat-menu>
             <a
                 *ngIf="usuarioSimplificado"
                 mat-button
@@ -60,6 +76,20 @@
                 routerLink="/heat-map"
                 routerLinkActive="active"
                 >Heat Map</a
+            >
+            <a
+                *ngIf="usuarioSimplificado"
+                mat-button
+                routerLink="/ensalamento"
+                routerLinkActive="active"
+                >Salas Atuais</a
+            >
+            <a
+                *ngIf="usuarioSimplificado && usuarioSimplificado?.isAdmin"
+                mat-button
+                routerLink="/alteracoes"
+                routerLinkActive="active"
+                >Ensalamento</a
             >
         </div>
         <div

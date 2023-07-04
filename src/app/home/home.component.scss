@@ -1,0 +1,23 @@
+@import "src/styles";
+
+.mat-card {
+    border: 5px $primary solid;
+    border-radius: 25px;
+    width: 400px;
+    margin: 20px auto;
+}
+
+.mat-card-header {
+    margin: 0 auto;
+    color: #1a171b;
+}
+
+:host ::ng-deep .mat-card-header-text {
+    margin: 0 auto;
+}
+
+img {
+    display: flex;
+    margin: 0 auto;
+    width: 70%;
+}

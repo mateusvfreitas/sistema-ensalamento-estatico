@@ -1,0 +1,31 @@
+table {
+    margin: auto;
+    width: 50%;
+}
+
+.mat-cell,
+.mat-header-cell {
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mat-row {
+    height: 30px;
+}
+
+.filtro-sala {
+    margin-top: 10px;
+}
+
+.container-filtro {
+    width: 50%;
+    margin: auto;
+}
+
+.filtro-button {
+    margin: auto 0;
+}
+
+.filtro-button button {
+    height: 50px;
+    // width: 10%;
+}

@@ -63,6 +63,28 @@ export class SalaService {
         return this.http.put(`${AppApi.BASE_URL}/salas/${id}`, data);
     }
 
+    consultaEnsalamentoEspecifico(id: any): Observable<any> {
+        return this.http.get(`${AppApi.BASE_URL}/salas/${id}/ensalamento`);
+    }
+
+    geraAlteracoesEnsalamento(
+        filtroAgrupamento: GrupoSala[] | null
+    ): Observable<any> {
+        let params = new HttpParams();
+        filtroAgrupamento?.forEach(
+            (grupo) =>
+                (params = params.append('agrupamento', grupo.id.toString()))
+        );
+        return this.http.get(
+            `${AppApi.BASE_URL}/salas/alteracoes-ensalamento`,
+            { params: params }
+        );
+    }
+
+    getSeila(): Observable<any> {
+        return this.http.get(`${AppApi.BASE_URL}/salas/seila`);
+    }
+
     setSalas(salas: Sala[]) {
         this.listaSalas = salas;
     }

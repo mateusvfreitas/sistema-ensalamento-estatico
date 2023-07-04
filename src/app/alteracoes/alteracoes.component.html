@@ -1,0 +1,168 @@
+<div class="container-conteudo">
+    <div
+        class="container-filtro"
+        style="display: flex; justify-content: space-between"
+    >
+        <div class="filtro-agrupamento" style="width: 70%">
+            <mat-form-field style="width: 90%" appearance="outline">
+                <mat-label>Agrupamentos</mat-label>
+                <mat-select [formControl]="filtroAgrupamento" multiple>
+                    <mat-select-trigger>
+                        <mat-chip-list>
+                            <mat-chip
+                                *ngFor="let grupo of filtroAgrupamento.value"
+                            >
+                                {{ grupo["nome"] }}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-select-trigger>
+                    <mat-option
+                        *ngFor="let grupo of listaAgrupamentos"
+                        [value]="grupo"
+                        >{{ grupo.nome }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="filtro-button">
+            <button
+                (click)="gerarAlteracoes()"
+                mat-raised-button
+                color="primary"
+                [disabled]="isGerandoAlteracoes"
+            >
+                Calcular Ensalamento
+            </button>
+            <!-- <button (click)="seila()" mat-raised-button color="accent">
+                Seila
+            </button> -->
+        </div>
+    </div>
+    <div *ngIf="isGerandoAlteracoes" class="espera">
+        <p style="text-align: center">Gerando alterações</p>
+        <mat-progress-spinner
+            style="margin: 50px auto"
+            class="example-margin"
+            color="primary"
+            mode="indeterminate"
+            diameter="150"
+        >
+        </mat-progress-spinner>
+    </div>
+    <div
+        *ngIf="
+            dataSource.data.length > 0 &&
+            requisicaoProcessada == true &&
+            erroUnfeasibility == false
+        "
+    >
+        <p class="titulo-tabela" style="text-align: center; margin-top: 20px">
+            Lista de alterações sugeridas no ensalamento
+        </p>
+        <table
+            mat-table
+            matSort
+            [dataSource]="dataSource"
+            matSortDisableClear="true"
+            class="mat-elevation-z8"
+        >
+            <ng-container matColumnDef="codigo">
+                <th
+                    style="width: 15%; text-align: center; padding-left: 0"
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Código
+                </th>
+                <td
+                    style="text-align: center; color: white; padding-left: 0"
+                    mat-cell
+                    *matCellDef="let element"
+                >
+                    {{ element.codigo }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="horario">
+                <th
+                    style="width: 15%; text-align: center"
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Horário
+                </th>
+                <td
+                    style="text-align: center; color: white"
+                    mat-cell
+                    *matCellDef="let element"
+                >
+                    {{ element.horario }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="salaOriginal">
+                <th
+                    style="width: 15%; text-align: center"
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Sala Original
+                </th>
+                <td
+                    style="text-align: center; color: white"
+                    mat-cell
+                    *matCellDef="let element"
+                >
+                    {{ element.salaOriginal }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="salaNova">
+                <th
+                    style="width: 15%; text-align: center; padding-right: 0"
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Sala Nova
+                </th>
+                <td
+                    style="text-align: center; color: white; padding-right: 0"
+                    mat-cell
+                    *matCellDef="let element"
+                >
+                    {{ element.salaNova }}
+                </td>
+            </ng-container>
+
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns; sticky: true"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <button
+            style="margin: 20px auto auto 828px"
+            mat-raised-button
+            color="primary"
+            [cdkCopyToClipboard]="clipboard"
+            (click)="avisaClipboardCopiado()"
+        >
+            Copiar para a área de transferência
+        </button>
+    </div>
+    <div
+        class="sem-alteracoes"
+        *ngIf="dataSource.data.length === 0 && requisicaoProcessada == true"
+    >
+        <p style="text-align: center">Ensalamento atual já está otimizado.</p>
+        <p style="text-align: center">Não há sugestão de alterações.</p>
+    </div>
+    <div class="erro-solucao" *ngIf="erroUnfeasibility == true">
+        <p style="text-align: center">Não foi possível gerar o ensalamento.</p>
+        <p style="text-align: center">
+            Sugestão: modifique o cadastro e tente novamente.
+        </p>
+    </div>
+    <!-- <div class="alteracoes"></div> -->
+</div>

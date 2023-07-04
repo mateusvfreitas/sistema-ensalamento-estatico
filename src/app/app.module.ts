@@ -6,11 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 // Material Design
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +22,7 @@ import {
     MatPaginatorIntl,
     MatPaginatorModule,
 } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -30,6 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Components
+import { AlteracoesComponent } from './alteracoes/alteracoes.component';
 import { AppComponent } from './app.component';
 import { AtributoModalComponent } from './atributo/atributo-modal/atributo-modal.component';
 import { AtributoComponent } from './atributo/atributo.component';
@@ -37,6 +42,7 @@ import { BlocoAulaModalComponent } from './bloco-aula/bloco-aula-modal/bloco-aul
 import { BlocoAulaComponent } from './bloco-aula/bloco-aula.component';
 import { CursoModalComponent } from './curso/curso-modal/curso-modal.component';
 import { CursoComponent } from './curso/curso.component';
+import { EnsalamentoComponent } from './ensalamento/ensalamento.component';
 import { GrupoSalaModalComponent } from './grupo-sala/grupo-sala-modal/grupo-sala-modal.component';
 import { GrupoSalaComponent } from './grupo-sala/grupo-sala.component';
 import { HeatMapComponent } from './heat-map/heat-map.component';
@@ -48,6 +54,7 @@ import { SalaModalComponent } from './sala/sala-modal/sala-modal.component';
 import { SalaComponent } from './sala/sala.component';
 import { CustomPaginatorConfiguration } from './shared/CustomPaginatorConfiguration';
 import { AccessGuard } from './shared/access-guard';
+import { AlteracoesGuard } from './shared/alteracoes-guard';
 import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { CreateUsuarioComponent } from './usuario/create/create-usuario.component';
 import { UsuarioComponent } from './usuario/usuario.component';
@@ -72,6 +79,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
         LoginComponent,
         HomeComponent,
         HeatMapComponent,
+        EnsalamentoComponent,
+        AlteracoesComponent,
     ],
     imports: [
         BrowserModule,
@@ -101,6 +110,10 @@ import { UsuarioComponent } from './usuario/usuario.component';
         MatSliderModule,
         MatSlideToggleModule,
         MatTooltipModule,
+        MatCardModule,
+        MatDividerModule,
+        MatProgressSpinnerModule,
+        ClipboardModule,
     ],
     exports: [
         BrowserModule,
@@ -118,6 +131,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
             multi: true,
         },
         AccessGuard,
+        AlteracoesGuard,
     ],
     bootstrap: [AppComponent],
 })

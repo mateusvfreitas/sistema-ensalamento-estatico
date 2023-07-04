@@ -64,32 +64,6 @@ export class UsuarioService {
     }
 
     /* USAR LOCAL CASO NAO TENHA USUARIO VÁLIDO PARA TESTE */
-    // login(username: any, password: any) {
-    //     let params = new HttpParams();
-    //     params = params.append('filtro', username);
-    //     return this.http
-    //         .get(`${AppApi.BASE_URL}/usuarios/username`, {
-    //             params: params,
-    //         })
-    //         .pipe(
-    //             concatMap((user) =>
-    //                 this.consultarUsuarioPorId(user['id']).pipe(
-    //                     map(() => {
-    //                         let u: UsuarioSimplificado = {
-    //                             username: user['username'],
-    //                             isAdmin: user['isAdmin'],
-    //                         };
-    //                         sessionStorage.setItem(
-    //                             'usuario',
-    //                             JSON.stringify(user)
-    //                         );
-    //                         this.usuarioSubject.next(u);
-    //                     })
-    //                 )
-    //             )
-    //         );
-    // }
-
     login(username: any, password: any) {
         let params = new HttpParams();
         params = params.append('filtro', username);
@@ -99,7 +73,7 @@ export class UsuarioService {
             })
             .pipe(
                 concatMap((user) =>
-                    this.validaUsuario(username, password).pipe(
+                    this.consultarUsuarioPorId(user['id']).pipe(
                         map(() => {
                             let u: UsuarioSimplificado = {
                                 username: user['username'],
@@ -115,6 +89,32 @@ export class UsuarioService {
                 )
             );
     }
+
+    // login(username: any, password: any) {
+    //     let params = new HttpParams();
+    //     params = params.append('filtro', username);
+    //     return this.http
+    //         .get(`${AppApi.BASE_URL}/usuarios/username`, {
+    //             params: params,
+    //         })
+    //         .pipe(
+    //             concatMap((user) =>
+    //                 this.validaUsuario(username, password).pipe(
+    //                     map(() => {
+    //                         let u: UsuarioSimplificado = {
+    //                             username: user['username'],
+    //                             isAdmin: user['isAdmin'],
+    //                         };
+    //                         sessionStorage.setItem(
+    //                             'usuario',
+    //                             JSON.stringify(user)
+    //                         );
+    //                         this.usuarioSubject.next(u);
+    //                     })
+    //                 )
+    //             )
+    //         );
+    // }
 
     logout() {
         sessionStorage.removeItem('usuario');
