@@ -1,27 +1,107 @@
-# Frontend
+# Classroom Allocation System Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
+An Angular-based web application for managing and optimizing classroom allocation in educational institutions.
 
-## Development server
+## 🚀 Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Interactive classroom management interface
+- Course and class block scheduling dashboard
+- Room attribute configuration
+- User management system with role-based access
+- Group-based room organization
+- Responsive Material Design interface
+- Real-time validation and error handling
+- Search and filter capabilities
 
-## Code scaffolding
+## 📋 Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Node.js (Latest LTS Version)
+- Angular CLI
+- Modern web browser (Chrome recommended)
+- Backend API running
 
-## Build
+## 🔧 Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+3. Start the development server:
+```bash
+ng serve
+```
+4. Navigate to http://localhost:4200
+## 🛠️ Tech Stack
+- Framework: Angular 14
+- UI Library: Angular Material
+- State Management: Angular Services
+- Build Tool: Angular CLI
+- Testing: Karma & Jasmine
+- Other Tools:
+  - RxJS
+  - TypeScript
+  - SCSS
+  - Angular Forms
+## 📦 Project Structure
+```plaintext
+src/app/
+├── atributo/           # Room attribute management
+├── bloco-aula/         # Class block management
+├── curso/              # Course management
+├── grupo-sala/         # Room group management
+├── horario/            # Schedule management
+├── sala/              # Classroom management
+├── usuario/           # User management
+├── shared/            # Shared components & interceptors
+└── utils/             # Utility services & functions
+ ```
 
-## Running unit tests
+## 🔍 Key Features Details
+### Room Management
+- Interactive room creation and editing
+- Attribute assignment interface
+- Room grouping functionality
+- Capacity and equipment tracking
+### Schedule Management
+- Visual schedule builder
+- Conflict detection
+- Time slot management
+- Schedule optimization integration
+### User Interface
+- Material Design components
+- Responsive layout
+- Dark theme support
+- Interactive data tables
+- Real-time search and filtering
+## 🧪 Development
+### Development Server
+```bash
+ng serve
+ ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Running Tests
+```bash
+ng test
+ ```
 
-## Running end-to-end tests
+### Building for Production
+```bash
+ng build --configuration production
+ ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🔧 Configuration
+The application can be configured through environment files:
 
-## Further help
+- environment.ts - Development configuration
+- environment.prod.ts - Production configuration
+## 🧪 Testing
+The project includes:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Unit tests using Karma/Jasmine
+- Component testing
+- Service testing
+- End-to-end testing capabilities
+## ✨ Contributors
+- Mateus Vieira Freitas
+- Gabriel Kuhnen Brylkowski
